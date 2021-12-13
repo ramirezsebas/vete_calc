@@ -1,26 +1,6 @@
 import 'package:get/get.dart';
+import 'package:vete_calc/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
-  final count = 0.obs;
   final selectedIndex = 0.obs;
-
-  void selectIndex(int index) {
-    selectedIndex.value = index;
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

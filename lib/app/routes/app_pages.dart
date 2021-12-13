@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 
+import 'package:vete_calc/app/modules/habilitacion-final/bindings/habilitacion_final_binding.dart';
+import 'package:vete_calc/app/modules/habilitacion-final/views/habilitacion_final_view.dart';
 import 'package:vete_calc/app/modules/home/bindings/home_binding.dart';
 import 'package:vete_calc/app/modules/home/views/home_view.dart';
+import 'package:vete_calc/app/modules/nota-final/bindings/nota_final_binding.dart';
+import 'package:vete_calc/app/modules/nota-final/views/nota_final_view.dart';
 
 part 'app_routes.dart';
 
@@ -15,6 +19,16 @@ class AppPages {
       name: _Paths.HOME,
       page: () => HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.HABILITACION_FINAL,
+      page: () => HabilitacionFinalView(),
+      binding: HabilitacionFinalBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTA_FINAL,
+      page: () => NotaFinalView(),
+      binding: NotaFinalBinding(),
     ),
   ];
 }
