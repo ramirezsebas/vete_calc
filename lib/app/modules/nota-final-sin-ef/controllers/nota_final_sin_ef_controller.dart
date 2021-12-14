@@ -1,20 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotaFinalSinEfController extends GetxController {
-  //TODO: Implement NotaFinalSinEfController
+  final posiblesNotas = [0, 0, 0, 0, 0].obs;
+  final bonificacion = 0.0.obs;
+  final notas = {}.obs;
+  final _formKey = GlobalKey<FormState>();
+
+  GlobalKey<FormState> get formKey => _formKey;
 
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  final selectedIndex = 0.obs;
 
-  @override
-  void onReady() {
-    super.onReady();
+  List calcularNotaFinal() {
+    posiblesNotas[0] = 59;
+    posiblesNotas[1] = 60;
+    posiblesNotas[2] = 71;
+    posiblesNotas[3] = 81;
+    posiblesNotas[4] = 91;
+    return posiblesNotas
+        .map((element) => element - bonificacion.value)
+        .toList();
   }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

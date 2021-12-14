@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:vete_calc/app/modules/habilitacion-final/views/habilitacion_final_view.dart';
+import 'package:vete_calc/app/modules/nota-final-sin-ef/views/nota_final_sin_ef_view.dart';
 import 'package:vete_calc/app/modules/nota-final/views/nota_final_view.dart';
 
 import '../controllers/home_controller.dart';
@@ -47,6 +48,7 @@ class HomeView extends GetView<HomeController> {
         () => IndexedStack(
           index: controller.selectedIndex.value,
           children: [
+            NotaFinalSinEfView(),
             NotaFinalView(),
             HabilitacionFinalView(),
           ],
@@ -56,11 +58,15 @@ class HomeView extends GetView<HomeController> {
         return BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Nota Con Examen Final',
+              icon: Icon(Icons.price_change),
+              label: 'Con Bonificación',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.receipt),
+              label: 'Con EF',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.check),
               label: 'Habilitación Final',
             ),
           ],
