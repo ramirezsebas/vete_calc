@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 
 class HabilitacionFinalController extends GetxController {
   final parciales = [0.0, 0.0].obs;
+  final tp = 0.0.obs;
+  final asistencia = 0.0.obs;
+  final bonificacionTP = 0.0.obs;
+  final bonificacionParciales = 0.0.obs;
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
@@ -15,6 +19,60 @@ class HabilitacionFinalController extends GetxController {
     Get.defaultDialog(
       title: 'Oye tranquilo viejo/a',
       content: Text('No puedes agregar mas parciales'),
+      confirm: TextButton(onPressed: Get.back, child: Text("Aceptar")),
+    );
+  }
+
+  void showPuntaje() {
+    int minimoPuntaje = 60 * parciales.length;
+    double total = parciales.reduce((a, b) => a + b);
+    String mensajeSuccess = 'Felicidades 😍. Habilitaste';
+    bool isSuccess = true;
+    String mensajeError = "No Habilitaste\n";
+    if (total < minimoPuntaje) {
+      isSuccess = false;
+      mensajeError +=
+          "\n😪Te falto ${minimoPuntaje - total} puntos en los Parciales";
+    }
+    if (tp.value < 80) {
+      isSuccess = false;
+      mensajeError += "\n😪Te falto ${80 - tp.value} puntos en TP";
+    }
+    if (asistencia.value < 70) {
+      isSuccess = false;
+      mensajeError +=
+          "\n😪Te falto ${80 - asistencia.value} puntos en Asistencia";
+    }
+    if (isSuccess) {
+      if (total >= 91 * parciales.length && total <= 100 * parciales.length) {
+        bonificacionParciales.value = 10;
+      } else if (total >= 81 * parciales.length &&
+          total < 90 * parciales.length) {
+        bonificacionParciales.value = 7;
+      } else if (total >= 71 * parciales.length &&
+          total < 80 * parciales.length) {
+        bonificacionParciales.value = 5;
+      }
+
+      if (tp.value >= 90 && tp.value <= 100) {
+        bonificacionTP.value = 5;
+      } else if (tp.value >= 80 && tp.value < 90) {
+        bonificacionTP.value = 2;
+      }
+
+      if (bonificacionParciales.value != 0) {
+        mensajeSuccess +=
+            "\nObtuviste una bonificación de ${bonificacionParciales.value} puntos con parciales ";
+      }
+      if (bonificacionTP.value != 0) {
+        mensajeSuccess +=
+            "\nObtuviste una bonificación de ${bonificacionTP.value} puntos con TPs";
+      }
+    }
+
+    Get.defaultDialog(
+      title: "Resultado",
+      content: Text(!isSuccess ? mensajeError : mensajeSuccess),
       confirm: TextButton(onPressed: Get.back, child: Text("Aceptar")),
     );
   }

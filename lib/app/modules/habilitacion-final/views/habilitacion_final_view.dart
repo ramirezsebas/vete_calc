@@ -59,12 +59,63 @@ class HabilitacionFinalView extends GetView<HabilitacionFinalController> {
                     )
                     .toList(),
                 SizedBox(height: 10),
-                Row(
-                  children: [
-                    ElevatedButton(
-                        onPressed: controller.addParcial,
-                        child: Text("Agregar Parcial")),
-                  ],
+                if (controller.parciales.length <= 3)
+                  Row(
+                    children: [
+                      ElevatedButton(
+                          onPressed: controller.addParcial,
+                          child: Text("Agregar Parcial")),
+                    ],
+                  ),
+                SizedBox(height: 10),
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  maxLength: 3,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'No puede estar vacio este campo';
+                    }
+                    if (int.parse(value) > 100) {
+                      return 'El puntaje no puede ser mayor a 100';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Ingrese el puntaje del TP',
+                    errorStyle: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) =>
+                      controller.tp.value = double.tryParse(value) ?? 0.0,
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  maxLength: 3,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'No puede estar vacio este campo';
+                    }
+                    if (int.parse(value) > 100) {
+                      return 'El puntaje no puede ser mayor a 100';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Ingrese el puntaje de la Asistencia',
+                    errorStyle: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) =>
+                      controller.asistencia.value = double.tryParse(value) ?? 0.0,
                 ),
                 SizedBox(height: 30),
                 ElevatedButton(
@@ -74,17 +125,7 @@ class HabilitacionFinalView extends GetView<HabilitacionFinalController> {
                     }
 
                     if (controller.formKey.currentState!.validate()) {
-                      int minimoPuntaje = 60 * controller.parciales.length;
-                      double total =
-                          controller.parciales.reduce((a, b) => a + b);
-                      Get.defaultDialog(
-                        title: "Resultado",
-                        content: Text(total >= minimoPuntaje
-                            ? 'Habiltaste 😍'
-                            : 'No Habilitaste 😪\nTe falto ${minimoPuntaje - total} puntos'),
-                        confirm: TextButton(
-                            onPressed: Get.back, child: Text("Aceptar")),
-                      );
+                      controller.showPuntaje();
                     } else {
                       Get.snackbar('Error', 'Ingrese los datos correctamente',
                           snackPosition: SnackPosition.BOTTOM,
