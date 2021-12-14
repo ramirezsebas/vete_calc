@@ -62,9 +62,9 @@ class NotaFinalView extends GetView<NotaFinalController> {
                   if (value!.isEmpty) {
                     return 'No puede estar vacio este campo';
                   }
-                  var b = double.tryParse(value)??0.0;
-                  if (b > 10) {
-                    return 'El puntaje no puede ser mayor a 10';
+                  var b = double.tryParse(value) ?? 0.0;
+                  if (b > 15) {
+                    return 'El puntaje no puede ser mayor a 15';
                   }
                   return null;
                 },
@@ -103,12 +103,15 @@ class NotaFinalView extends GetView<NotaFinalController> {
                         ],
                       );
                     } else {
-                      Get.snackbar('Error', 'Ingrese los datos correctamente',
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white,
-                          borderRadius: 10,
-                          margin: EdgeInsets.all(10));
+                      Get.snackbar(
+                        'Error',
+                        'Ingrese los datos correctamente',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                        borderRadius: 10,
+                        margin: EdgeInsets.all(10),
+                      );
                     }
                   },
                   child: Text("Calcular Nota Final"),

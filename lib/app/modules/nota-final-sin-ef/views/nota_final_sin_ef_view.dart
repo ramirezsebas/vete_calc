@@ -35,7 +35,8 @@ class NotaFinalSinEfView extends GetView<NotaFinalSinEfController> {
                   if (value!.isEmpty) {
                     return 'No puede estar vacio este campo';
                   }
-                  if (int.parse(value) > 15) {
+                  var b = double.tryParse(value) ?? 0.0;
+                  if (b > 15) {
                     return 'El puntaje no puede ser mayor a 15';
                   }
                   return null;
