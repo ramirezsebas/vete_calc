@@ -14,6 +14,33 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         title: Text('Vete Calc'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.defaultDialog(
+                title: "Escala de notas",
+                content: Column(
+                  children: [
+                    Text("  5 | 91 - 100"),
+                    Text("4 | 81 - 90"),
+                    Text("3 | 71 - 80"),
+                    Text("2 | 60 - 70"),
+                  ],
+                ),
+                confirm: TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Get.back();
+                  },
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.help_outline,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: Obx(
         () => IndexedStack(
