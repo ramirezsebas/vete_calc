@@ -5,6 +5,8 @@ class HabilitacionFinalController extends GetxController {
   final parciales = [0.0, 0.0].obs;
   final tp = 0.0.obs;
   final asistencia = 0.0.obs;
+  final bonificacionTP = 0.0.obs;
+  final bonificacionParciales = 0.0.obs;
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
@@ -28,17 +30,44 @@ class HabilitacionFinalController extends GetxController {
     bool isSuccess = true;
     String mensajeError = "No Habilitaste\n";
     if (total < minimoPuntaje) {
-      isSuccess=false;
+      isSuccess = false;
       mensajeError +=
           "\n😪Te falto ${minimoPuntaje - total} puntos en los Parciales";
     }
     if (tp.value < 80) {
-      isSuccess=false;
+      isSuccess = false;
       mensajeError += "\n😪Te falto ${80 - tp.value} puntos en TP";
     }
     if (asistencia.value < 70) {
-      isSuccess=false;
-      mensajeError += "\n😪Te falto ${80 - asistencia.value} puntos en Asistencia";
+      isSuccess = false;
+      mensajeError +=
+          "\n😪Te falto ${80 - asistencia.value} puntos en Asistencia";
+    }
+    if (isSuccess) {
+      if (total >= 91 * parciales.length && total <= 100 * parciales.length) {
+        bonificacionTP.value = 10;
+      } else if (total >= 81 * parciales.length &&
+          total < 90 * parciales.length) {
+        bonificacionTP.value = 7;
+      } else if (total >= 71 * parciales.length &&
+          total < 80 * parciales.length) {
+        bonificacionTP.value = 5;
+      }
+
+      if (tp.value >= 90 && tp.value <= 100) {
+        bonificacionParciales.value = 5;
+      } else if (tp.value >= 80 && tp.value < 90) {
+        bonificacionParciales.value = 2;
+      }
+
+      if (bonificacionParciales.value != 0) {
+        mensajeSuccess +=
+            "\nObtuviste una bonificación de parciales de ${bonificacionParciales.value} puntos";
+      }
+      if (bonificacionTP.value != 0) {
+        mensajeSuccess +=
+            "\nObtuviste una bonificación de TP de ${bonificacionTP.value} puntos";
+      }
     }
 
     Get.defaultDialog(
