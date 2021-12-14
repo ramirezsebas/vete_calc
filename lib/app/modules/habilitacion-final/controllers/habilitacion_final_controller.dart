@@ -34,39 +34,19 @@ class HabilitacionFinalController extends GetxController {
       mensajeError +=
           "\n😪Te falto ${minimoPuntaje - total} puntos en los Parciales";
     }
-    if (tp.value < 80) {
-      isSuccess = false;
-      mensajeError += "\n😪Te falto ${80 - tp.value} puntos en TP";
-    }
-    if (asistencia.value < 70) {
-      isSuccess = false;
-      mensajeError +=
-          "\n😪Te falto ${80 - asistencia.value} puntos en Asistencia";
-    }
     if (isSuccess) {
-      if (total >= 91 * parciales.length && total <= 100 * parciales.length) {
-        bonificacionParciales.value = 10;
+      if (total >= 71 * parciales.length && total < 80 * parciales.length) {
+        bonificacionParciales.value = 5;
       } else if (total >= 81 * parciales.length &&
           total < 90 * parciales.length) {
         bonificacionParciales.value = 7;
-      } else if (total >= 71 * parciales.length &&
-          total < 80 * parciales.length) {
-        bonificacionParciales.value = 5;
-      }
-
-      if (tp.value >= 90 && tp.value <= 100) {
-        bonificacionTP.value = 5;
-      } else if (tp.value >= 80 && tp.value < 90) {
-        bonificacionTP.value = 2;
+      } else if (total >= 91 * parciales.length) {
+        bonificacionParciales.value = 10;
       }
 
       if (bonificacionParciales.value != 0) {
         mensajeSuccess +=
             "\nObtuviste una bonificación de ${bonificacionParciales.value} puntos con parciales ";
-      }
-      if (bonificacionTP.value != 0) {
-        mensajeSuccess +=
-            "\nObtuviste una bonificación de ${bonificacionTP.value} puntos con TPs";
       }
     }
 

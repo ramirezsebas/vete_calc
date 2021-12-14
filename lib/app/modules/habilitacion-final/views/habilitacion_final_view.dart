@@ -68,56 +68,6 @@ class HabilitacionFinalView extends GetView<HabilitacionFinalController> {
                     ],
                   ),
                 SizedBox(height: 10),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  maxLength: 3,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'No puede estar vacio este campo';
-                    }
-                    if (int.parse(value) > 100) {
-                      return 'El puntaje no puede ser mayor a 100';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Ingrese el puntaje del TP',
-                    errorStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) =>
-                      controller.tp.value = double.tryParse(value) ?? 0.0,
-                ),
-                SizedBox(height: 10),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  maxLength: 3,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'No puede estar vacio este campo';
-                    }
-                    if (int.parse(value) > 100) {
-                      return 'El puntaje no puede ser mayor a 100';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Ingrese el puntaje de la Asistencia',
-                    errorStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) =>
-                      controller.asistencia.value = double.tryParse(value) ?? 0.0,
-                ),
-                SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
                     if (controller.formKey.currentState == null) {

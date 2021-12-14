@@ -18,8 +18,9 @@ class NotaFinalSinEfController extends GetxController {
     posiblesNotas[2] = 71;
     posiblesNotas[3] = 81;
     posiblesNotas[4] = 91;
-    return posiblesNotas
-        .map((element) => element - bonificacion.value)
-        .toList();
+    return posiblesNotas.map((element) {
+      var examenFinal = (((100 - bonificacion.value) * element) / 100);
+      return examenFinal.round();
+    }).toList();
   }
 }
