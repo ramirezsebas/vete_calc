@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 class HabilitacionFinalController extends GetxController {
   final parciales = [0.0, 0.0].obs;
+  final tp = 0.0.obs;
+  final asistencia = 0.0.obs;
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
@@ -15,6 +17,33 @@ class HabilitacionFinalController extends GetxController {
     Get.defaultDialog(
       title: 'Oye tranquilo viejo/a',
       content: Text('No puedes agregar mas parciales'),
+      confirm: TextButton(onPressed: Get.back, child: Text("Aceptar")),
+    );
+  }
+
+  void showPuntaje() {
+    int minimoPuntaje = 60 * parciales.length;
+    double total = parciales.reduce((a, b) => a + b);
+    String mensajeSuccess = 'Felicidades 😍. Habilitaste';
+    bool isSuccess = true;
+    String mensajeError = "No Habilitaste\n";
+    if (total < minimoPuntaje) {
+      isSuccess=false;
+      mensajeError +=
+          "\n😪Te falto ${minimoPuntaje - total} puntos en los Parciales";
+    }
+    if (tp.value < 80) {
+      isSuccess=false;
+      mensajeError += "\n😪Te falto ${80 - tp.value} puntos en TP";
+    }
+    if (asistencia.value < 70) {
+      isSuccess=false;
+      mensajeError += "\n😪Te falto ${80 - asistencia.value} puntos en Asistencia";
+    }
+
+    Get.defaultDialog(
+      title: "Resultado",
+      content: Text(!isSuccess ? mensajeError : mensajeSuccess),
       confirm: TextButton(onPressed: Get.back, child: Text("Aceptar")),
     );
   }

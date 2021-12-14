@@ -18,13 +18,14 @@ class HomeView extends GetView<HomeController> {
           IconButton(
             onPressed: () {
               Get.defaultDialog(
-                title: "Escala de notas",
+                title: "Escala de Notas",
                 content: Column(
                   children: [
                     Text("  5 | 91 - 100"),
                     Text("4 | 81 - 90"),
                     Text("3 | 71 - 80"),
                     Text("2 | 60 - 70"),
+                    Text("1 | 00 - 59"),
                   ],
                 ),
                 confirm: TextButton(
@@ -56,7 +57,7 @@ class HomeView extends GetView<HomeController> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.business),
-              label: 'Nota Final',
+              label: 'Nota Con Examen Final',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
