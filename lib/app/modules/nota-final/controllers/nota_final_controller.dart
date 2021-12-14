@@ -40,16 +40,18 @@ class NotaFinalController extends GetxController {
 
   int calcularNotaFinal() {
     var puntajeFinal = (examenFinal.value * 100) / (100 - bonificacion.value);
-    if (puntajeFinal >= 91 && puntajeFinal <= 100) {
-      return 5;
-    } else if (puntajeFinal >= 81 && puntajeFinal <= 90) {
-      return 4;
+
+    if (puntajeFinal >= 0 && puntajeFinal <= 59) {
+      return 1;
+    } else if (puntajeFinal >= 60 && puntajeFinal <= 70) {
+      return 2;
     } else if (puntajeFinal >= 71 && puntajeFinal <= 80) {
       return 3;
-    } else if (puntajeFinal >= 61 && puntajeFinal <= 70) {
-      return 2;
+    } else if (puntajeFinal >= 81 && puntajeFinal <= 90) {
+      return 4;
     }
-    return 1;
+
+    return 5;
   }
 
   @override

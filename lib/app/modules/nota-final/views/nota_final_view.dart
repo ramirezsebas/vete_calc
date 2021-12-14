@@ -62,8 +62,8 @@ class NotaFinalView extends GetView<NotaFinalController> {
                   if (value!.isEmpty) {
                     return 'No puede estar vacio este campo';
                   }
-                  if (int.parse(value) > 10) {
-                    return 'El puntaje no puede ser mayor a 10';
+                  if (int.parse(value) > 15) {
+                    return 'El puntaje no puede ser mayor a 15';
                   }
                   return null;
                 },

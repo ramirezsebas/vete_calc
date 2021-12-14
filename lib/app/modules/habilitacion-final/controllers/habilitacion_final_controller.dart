@@ -45,28 +45,28 @@ class HabilitacionFinalController extends GetxController {
     }
     if (isSuccess) {
       if (total >= 91 * parciales.length && total <= 100 * parciales.length) {
-        bonificacionTP.value = 10;
+        bonificacionParciales.value = 10;
       } else if (total >= 81 * parciales.length &&
           total < 90 * parciales.length) {
-        bonificacionTP.value = 7;
+        bonificacionParciales.value = 7;
       } else if (total >= 71 * parciales.length &&
           total < 80 * parciales.length) {
-        bonificacionTP.value = 5;
+        bonificacionParciales.value = 5;
       }
 
       if (tp.value >= 90 && tp.value <= 100) {
-        bonificacionParciales.value = 5;
+        bonificacionTP.value = 5;
       } else if (tp.value >= 80 && tp.value < 90) {
-        bonificacionParciales.value = 2;
+        bonificacionTP.value = 2;
       }
 
       if (bonificacionParciales.value != 0) {
         mensajeSuccess +=
-            "\nObtuviste una bonificación de parciales de ${bonificacionParciales.value} puntos";
+            "\nObtuviste una bonificación de ${bonificacionParciales.value} puntos con parciales ";
       }
       if (bonificacionTP.value != 0) {
         mensajeSuccess +=
-            "\nObtuviste una bonificación de TP de ${bonificacionTP.value} puntos";
+            "\nObtuviste una bonificación de ${bonificacionTP.value} puntos con TPs";
       }
     }
 
