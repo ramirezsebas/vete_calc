@@ -48,7 +48,7 @@ class NotaFinalView extends GetView<NotaFinalController> {
                 height: 30,
               ),
               TextFormField(
-                maxLength: 3,
+                maxLength: 2,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: InputDecoration(
                   labelText: 'Ingrese el puntaje de la Bonificación',
@@ -62,8 +62,9 @@ class NotaFinalView extends GetView<NotaFinalController> {
                   if (value!.isEmpty) {
                     return 'No puede estar vacio este campo';
                   }
-                  if (int.parse(value) > 100) {
-                    return 'El puntaje no puede ser mayor a 100';
+                  var b = double.tryParse(value)??0.0;
+                  if (b > 10) {
+                    return 'El puntaje no puede ser mayor a 10';
                   }
                   return null;
                 },
