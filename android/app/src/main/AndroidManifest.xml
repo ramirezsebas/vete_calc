@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ramirez.sebastian.vete_calc">
    <application
-        android:label="vete_calc"
+        android:label="Vete Calc"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
