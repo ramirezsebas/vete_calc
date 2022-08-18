@@ -2,7 +2,7 @@
     package="com.ramirez.sebastian.vete_calc">
    <application
         android:label="vete_calc"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
