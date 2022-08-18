@@ -14,12 +14,6 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.contact_page),
-          onPressed: () {
-           
-          },
-        ),
         title: Text('Vete Calc'),
         centerTitle: true,
         actions: [
