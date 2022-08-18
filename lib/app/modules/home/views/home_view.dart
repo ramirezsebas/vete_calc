@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:vete_calc/app/modules/habilitacion-final/views/habilitacion_final_view.dart';
 import 'package:vete_calc/app/modules/nota-final-sin-ef/views/nota_final_sin_ef_view.dart';
 import 'package:vete_calc/app/modules/nota-final/views/nota_final_view.dart';
-import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  launchWhatsApp() async {
-    final link = WhatsAppUnilink(
-      phoneNumber: '+595984113102',
-      text: "Hola! Consulta sobre Vet Calc",
-    );
-
-    await launch('$link');
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,22 +17,7 @@ class HomeView extends GetView<HomeController> {
         leading: IconButton(
           icon: Icon(Icons.contact_page),
           onPressed: () {
-            Get.defaultDialog(
-              title: "Contactar por Whatsapp",
-              content: Text(""),
-              confirm: TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  launchWhatsApp();
-                },
-              ),
-              cancel: TextButton(
-                child: Text("Cancelar"),
-                onPressed: () {
-                  Get.back();
-                },
-              ),
-            );
+           
           },
         ),
         title: Text('Vete Calc'),
